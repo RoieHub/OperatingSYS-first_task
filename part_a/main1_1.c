@@ -1,7 +1,10 @@
+#include <stdio.h>
 #include "hello_Ariel.h"
 
 int main()
 {
-	hello_message("Ariel");
-	return 0;
+
+print_hello_Ariel();
+return 1;
+
 }

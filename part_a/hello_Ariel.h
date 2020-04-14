@@ -1,6 +1,4 @@
-#ifndef __HELLO__
-#define __HELLO__
-
-void hello_message(const char *name);
-
+#ifndef HELLO_ARIEL_H
+#define HELLO_ARIEL_H
+void print_hello_Ariel();
 #endif

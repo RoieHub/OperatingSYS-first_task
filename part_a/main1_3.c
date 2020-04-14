@@ -1,26 +1,35 @@
-#include <stddef.h>
-#include <stdbool.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include <dlfcn.h>
+#include <stddef.h>
+#include "hello_Ariel.h"
 
-void(*hello_message)(const char *);
+void (*hallo_message)();
 
-bool init_library()
-{
-	void * hdl = dlopen("./libHello.so",RTLD_LAZY);
-	if ( hdl == NULL )
-		return false;
-	hello_message =  ( void(*)(const char*))dlsym(hdl,"hello_message");
-	if(hello_message == NULL)
-		return false;
-	return true;
+bool init_library(){
+    void* hdl = dlopen("./libHelloAriel.so",RTLD_LAZY);
+    if(hdl == NULL)
+	{
+	return false;
+	}
+
+    hallo_message =(void(*)())dlsym(hdl,"print_hello_Ariel");
+
+    if(hallo_message== NULL)
+	{	
+	return false;
+	}
+    return true;
 }
 
-int main()
-{
-	if(init_library())
-		hello_message("Ariel");
-	else
-		printf("Lib was not loaded \n");
-	return 0 ;
+int main(){
+    if(init_library())
+    {
+        hallo_message();
+    }
+    else
+    {
+        printf("Library was not loaded \n");
+    }
+    return 0;
 }

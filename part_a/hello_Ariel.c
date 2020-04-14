@@ -1,7 +1,7 @@
-#include "hello_Ariel.h"
 #include <stdio.h>
+#include "hello_Ariel.h"
 
-void hello_message( const char *name)
+void print_hello_Ariel()
 {
-	printf("Hello %s\n",name);
+ printf("hello Ariel\n");
 }
