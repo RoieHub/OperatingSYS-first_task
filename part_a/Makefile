@@ -1,5 +1,5 @@
 
-all: firstask secondtask thirdtask firstTaskB secondTaskB
+all: firstask secondtask thirdtask firstTaskB secondTaskB thirdTaskB forthTaskB
 
 firstask: main1_1.o hello_Ariel.o
 	gcc -Wall -g main1_1.o hello_Ariel.o -o firstask
@@ -27,14 +27,26 @@ main1_3.o: main1_3.c hello_Ariel.h
 firstTaskB:process1.o
 	gcc -Wall -g process1.o -o firstTaskB
 
-main2_1.o: process1.cpp
-	gcc -Wall -g -c process1.cpp
+main2_1.o: process1.c
+	gcc -Wall -g -c process1.c
 
 secondTaskB:process2.o
 	gcc -Wall -g process2.o -o secondTaskB
 
-main2_2.o: process2.cpp
-	gcc -Wall -g -c process2.cpp
+main2_2.o: process2.c
+	gcc -Wall -g -c process2.c
+
+thirdTaskB:process3.o
+	gcc -Wall -g process3.o -o thirdTaskB
+
+main2_3.o: process3.c
+	gcc -Wall -g -c process3.c
+
+forthTaskB:process4.o
+	gcc -Wall -g process4.o -o forthTaskB
+
+main2_4.o: process4.c
+	gcc -Wall -g -c process4.c
 
 lib: hello_Ariel.o
 	gcc -Wall -g -shared hello_Ariel.o -o libHelloAriel.so
@@ -42,4 +54,4 @@ lib: hello_Ariel.o
 .PHONY: clean all
 
 clean:
-	rm -f firstask secondtask thirdtask firstTaskB secondTaskB *.o *.so
+	rm -f firstask secondtask thirdtask firstTaskB secondTaskB thirdTaskB forthTaskB *.o *.so
