@@ -1,0 +1,156 @@
+hello2:
+
+
+ltrace ./hello2
+
+	hello_message(0x55989a4837c4, 0x7fff6e47a118, 0x7fff6e47a128, 0x55989a483740) = 12
++++ exited (status 0) +++
+
+
+ldd ./hello2
+
+	linux-vdso.so.1 (0x00007ffc659ae000)
+	libHello.so => ./libHello.so (0x00007efc735ac000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007efc731bb000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007efc739b0000)
+
+strace ./hello2
+
+	execve("./hello2", ["./hello2"], 0x7ffcf6463af0 /* 57 vars */) = 0
+	brk(NULL)                               = 0x563910b3f000
+	access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+	access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/x86_64/libHello.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/libHello.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/libHello.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/libHello.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/x86_64/libHello.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/libHello.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/libHello.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./libHello.so", O_RDONLY|O_CLOEXEC) = 3
+	read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0@\5\0\0\0\0\0\0"..., 832) = 832
+	fstat(3, {st_mode=S_IFREG|0755, st_size=7912, ...}) = 0
+	mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f38f4e53000
+	getcwd("/home/roie/Study", 128)         = 17
+	mmap(NULL, 2101296, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f38f4a2c000
+	mprotect(0x7f38f4a2d000, 2093056, PROT_NONE) = 0
+	mmap(0x7f38f4c2c000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0x7f38f4c2c000
+	close(3)                                = 0
+	openat(AT_FDCWD, "./tls/x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+	fstat(3, {st_mode=S_IFREG|0644, st_size=80031, ...}) = 0
+	mmap(NULL, 80031, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f38f4e3f000
+	close(3)                                = 0
+	access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+	read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\260\34\2\0\0\0\0\0"..., 832) = 832
+	fstat(3, {st_mode=S_IFREG|0755, st_size=2030544, ...}) = 0
+	mmap(NULL, 4131552, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f38f463b000
+	mprotect(0x7f38f4822000, 2097152, PROT_NONE) = 0
+	mmap(0x7f38f4a22000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e7000) = 0x7f38f4a22000
+	mmap(0x7f38f4a28000, 15072, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f38f4a28000
+	close(3)                                = 0
+	mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f38f4e3c000
+	arch_prctl(ARCH_SET_FS, 0x7f38f4e3c740) = 0
+	mprotect(0x7f38f4a22000, 16384, PROT_READ) = 0
+	mprotect(0x7f38f4c2c000, 4096, PROT_READ) = 0
+	mprotect(0x56390fd14000, 4096, PROT_READ) = 0
+	mprotect(0x7f38f4e55000, 4096, PROT_READ) = 0
+	munmap(0x7f38f4e3f000, 80031)           = 0
+	fstat(1, {st_mode=S_IFREG|0644, st_size=379, ...}) = 0
+	brk(NULL)                               = 0x563910b3f000
+	brk(0x563910b60000)                     = 0x563910b60000
+	write(1, "Hello Ariel\n", 12)           = 12
+	exit_group(0)                           = ?
+	+++ exited with 0 +++
+
+hello3
+
+ldd ./hello3
+
+	
+	linux-vdso.so.1 (0x00007fff3dbe1000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f8fc8d34000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f8fc8943000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f8fc913a000)
+
+ltrace ./hello3
+	
+	dlopen("./libHello.so", 1)                   = 0x5622adc19280
+	dlsym(0x5622adc19280, "hello_message")       = 0x7ff04a9f861a
+	+++ exited (status 0) +++
+
+strace ./hello3
+
+	execve("./hello3", ["./hello3"], 0x7ffe364a9710 /* 57 vars */) = 0
+	brk(NULL)                               = 0x559ff56a3000
+	access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+	access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./libdl.so.2", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+	fstat(3, {st_mode=S_IFREG|0644, st_size=80031, ...}) = 0
+	mmap(NULL, 80031, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7ff9667c8000
+	close(3)                                = 0
+	access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+	read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0P\16\0\0\0\0\0\0"..., 832) = 832
+	fstat(3, {st_mode=S_IFREG|0644, st_size=14560, ...}) = 0
+	mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7ff9667c6000
+	mmap(NULL, 2109712, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 	0x7ff9663b1000
+	mprotect(0x7ff9663b4000, 2093056, PROT_NONE) = 0
+	mmap(0x7ff9665b3000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x7ff9665b3000
+	close(3)                                = 0
+	openat(AT_FDCWD, "./tls/x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./tls/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)	
+	openat(AT_FDCWD, "./x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "./libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+	access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+	openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+	read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\260\34\2\0\0\0\0\0"..., 832) = 832
+	fstat(3, {st_mode=S_IFREG|0755, st_size=2030544, ...}) = 0
+	mmap(NULL, 4131552, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7ff965fc0000
+	mprotect(0x7ff9661a7000, 2097152, PROT_NONE) = 0
+	mmap(0x7ff9663a7000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e7000) = 0x7ff9663a7000
+	mmap(0x7ff9663ad000, 15072, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7ff9663ad000
+	close(3)                                = 0
+	mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7ff9667c3000
+	arch_prctl(ARCH_SET_FS, 0x7ff9667c3740) = 0
+	mprotect(0x7ff9663a7000, 16384, PROT_READ) = 0
+	mprotect(0x7ff9665b3000, 4096, PROT_READ) = 0
+	mprotect(0x559ff4d4a000, 4096, PROT_READ) = 0
+	mprotect(0x7ff9667dc000, 4096, PROT_READ) = 0
+	munmap(0x7ff9667c8000, 80031)           = 0
+	brk(NULL)                               = 0x559ff56a3000
+	brk(0x559ff56c4000)                     = 0x559ff56c4000
+	openat(AT_FDCWD, "./libHello.so", O_RDONLY|O_CLOEXEC) = 3
+	read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0@\5\0\0\0\0\0\0"..., 832) = 832
+	fstat(3, {st_mode=S_IFREG|0755, st_size=7912, ...}) = 0
+	getcwd("/home/roie/Study", 128)         = 17
+	mmap(NULL, 2101296, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7ff965dbe000
+	mprotect(0x7ff965dbf000, 2093056, PROT_NONE) = 0
+	mmap(0x7ff965fbe000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0) = 0x7ff965fbe000
+	close(3)                                = 0
+	mprotect(0x7ff965fbe000, 4096, PROT_READ) = 0
+	fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+	write(1, "Hello Ariel\n", 12Hello Ariel)           = 12
+	exit_group(0)                           = ?
+	+++ exited with 0 +++
+
